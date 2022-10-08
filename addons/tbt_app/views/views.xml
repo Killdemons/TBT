@@ -1,0 +1,61 @@
+<odoo>
+    <!--Partner Form View-->
+    <record id="view_form_res_partner_extent_cobrador" model="ir.ui.view">
+        <field name="name">view.form.res.partner.cobrador</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="cobrador" domain="[]" string="Cobrador"/>
+            </field>
+        </field>
+    </record>
+    <!--Partner Tree View-->
+    <record id="view_tree_res_partner_extent_cobrador" model="ir.ui.view">
+        <field name="name">view.tree.res.partner.cobrador</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <field name="cobrador" domain="[]" string="Cobrador"/>
+            </field>
+        </field>
+    </record>
+    <!--Partner Kanban View-->
+    <record id="view_kanban_res_partner_extent_cobrador" model="ir.ui.view">
+        <field name="name">view.kanban.res.partner.cobrador</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <field name="cobrador" domain="[]" string="Cobrador"/>
+            </field>
+            <xpath expr="//div[contains(@class, 'o_kanban_tags_section')]" position="inside">
+                <a t-if="record.cobrador.raw_value" style="margin-right: 10px"
+                    name="cobrador" type="object"><field name="cobrador"/></a>
+            </xpath>
+        </field>
+    </record>
+    <!--Sale order Form View-->
+    <record id="view_form_order_extent_cobrador" model="ir.ui.view">
+        <field name="name">view.form.order.cobrador</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="cobrador" attrs="{'readonly':[['state', 'not in', ['draft']]]}" string="Cobrador"/>
+            </field>
+        </field>
+    </record>
+    <!--Account move Form View-->
+    <record id="view_form_move_extent_cobrador" model="ir.ui.view">
+        <field name="name">view.form.move.cobrador</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="cobrador" attrs="{'readonly':[['state', 'not in', ['draft']]]}" string="Cobrador"/>
+            </field>
+        </field>
+    </record>
+</odoo>
